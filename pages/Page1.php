@@ -11,14 +11,22 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Base Core</title>
-    <link rel="stylesheet" href="../assets/CSS/page1.css">
+    <link rel="stylesheet" href="../assets/CSS/Page1.css">
 </head>
 <body>
 
 <header class="topbar">
     <h1 class="logo">BASE CORE</h1>
-    <a href="../auth/logout.php" class="logout">Logout</a>
+
+    <div class="topbar-actions">
+        <?php if ($_SESSION['role'] == 1): ?>
+            <a href="../admin/question.php" class="admin-panel">Admin Panel</a>
+        <?php endif; ?>
+
+        <a href="../auth/logout.php" class="logout">Logout</a>
+    </div>
 </header>
+
 
 <section class="profile-box">
     <div class="pfp">
@@ -45,27 +53,27 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="card red">
         <h3>Matematika</h3>
-        <button onclick="location.href='math.php'">Mulai</button>
+        <button onclick="location.href='quiz.php?cat=1'">Mulai</button>
     </div>
 
     <div class="card yellow">
         <h3>Bahasa Indonesia</h3>
-        <button onclick="location.href='indo.php'">Mulai</button>
+        <button onclick="location.href='quiz.php?cat=2'">Mulai</button>
     </div>
 
     <div class="card purple">
         <h3>Bahasa Inggris</h3>
-        <button onclick="location.href='english.php'">Mulai</button>
+        <button onclick="location.href='quiz.php?cat=3'">Mulai</button>
     </div>
 
     <div class="card green">
         <h3>Sains Dasar</h3>
-        <button onclick="location.href='sains.php'">Mulai</button>
+        <button onclick="location.href='quiz.php?cat=4'">Mulai</button>
     </div>
 
     <div class="card blue">
         <h3>Logic</h3>
-        <button onclick="location.href='logic.php'">Mulai</button>
+        <button onclick="location.href='quiz.php?cat=5'">Mulai</button>
     </div>
 </section>
 

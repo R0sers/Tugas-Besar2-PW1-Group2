@@ -45,6 +45,39 @@ body {
     transform: scale(0.96);
 }
 
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* tombol admin */
+.admin-panel {
+    position: relative;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6366f1, #818cf8);
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(99,102,241,0.35);
+    transition: all 0.25s ease;
+}
+
+/* hover */
+.admin-panel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(99,102,241,0.45);
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+}
+
+/* klik */
+.admin-panel:active {
+    transform: scale(0.96);
+}
+
+
 .profile-box {
     background: white;
     margin: 20px auto;
