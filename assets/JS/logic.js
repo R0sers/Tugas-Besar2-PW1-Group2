@@ -1,88 +1,130 @@
 let idx = 0;
 const answers = new Array(questions.length).fill(null);
 
+// ELEMENT
 const qNumber = document.getElementById("q-number");
 const qText = document.getElementById("q-text");
 const optionsWrap = document.getElementById("options");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const resultWrap = document.getElementById("result");
+
+// HEADER
+const progressText = document.getElementById("progress-text");
 const progressPill = document.getElementById("progress-pill");
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-const submitBtn = document.getElementById("submit-btn");
-const resultWrap = document.getElementById("result-wrap");
 
-function render() {
-    const curr = questions[idx];
+// FINISH
+const finishScreen = document.getElementById("finish-screen");
+const finalScore = document.getElementById("final-score");
 
-    qNumber.textContent = `Soal ${idx + 1}`;
-    qText.textContent = curr.question;
-    progressPill.textContent = `${idx + 1}/${questions.length} Soal`;
-
-    optionsWrap.innerHTML = "";
-
-    ["A","B","C"].forEach(opt => {
-        const wrapper = document.createElement("label");
-        wrapper.className = "option";
-        wrapper.innerHTML = `
-            <input type="radio" name="choice" value="${opt}">
-            <div>${opt}. ${curr["option_" + opt.toLowerCase()]}</div>
-        `;
-
-        const input = wrapper.querySelector("input");
-        if (answers[idx] === opt) input.checked = true;
-
-        input.addEventListener("change", () => {
-            answers[idx] = opt;
-            nextBtn.disabled = false;
-        });
-
-        optionsWrap.appendChild(wrapper);
-    });
-
-    prevBtn.disabled = idx === 0;
-
-    if (idx === questions.length - 1) {
-        nextBtn.style.display = "none";
-        submitBtn.style.display = "inline-block";
-    } else {
-        nextBtn.style.display = "inline-block";
-        submitBtn.style.display = "none";
-    }
-
-    nextBtn.disabled = answers[idx] === null;
+// 🔴 JIKA DB KOSONG
+if (!questions || questions.length === 0) {
+    qText.innerHTML = "❌ Soal belum tersedia.";
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+    throw new Error("No questions found");
 }
 
+function render() {
+    const q = questions[idx];
+
+    // Nomor & soal
+    qNumber.textContent = `Soal ${idx + 1}`;
+    qText.textContent = q.question;
+
+    // Progress
+    const progress = `${idx + 1}/${questions.length} Soal`;
+    if (progressText) progressText.textContent = progress;
+    if (progressPill) progressPill.textContent = progress;
+
+    // Options
+    optionsWrap.innerHTML = "";
+
+    const opts = [
+        { letter: "A", text: q.option_a },
+        { letter: "B", text: q.option_b },
+        { letter: "C", text: q.option_c }
+    ];
+
+    opts.forEach(opt => {
+        const label = document.createElement("label");
+        label.setAttribute("data-letter", opt.letter);
+
+        label.innerHTML = `
+            <input type="radio" name="answer" value="${opt.letter}">
+            <span>${opt.letter}) ${opt.text}</span>
+        `;
+
+        // restore jawaban
+        if (answers[idx] === opt.letter) {
+            label.classList.add("selected");
+            label.querySelector("input").checked = true;
+        }
+
+        label.onclick = () => {
+            answers[idx] = opt.letter;
+
+            document
+                .querySelectorAll("#options label")
+                .forEach(l => l.classList.remove("selected"));
+
+            label.classList.add("selected");
+            nextBtn.disabled = false;
+        };
+
+        optionsWrap.appendChild(label);
+    });
+
+    // Tombol
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = answers[idx] === null;
+
+    // Ubah Lanjut → Selesai di soal terakhir
+    if (idx === questions.length - 1) {
+        nextBtn.textContent = "Selesai";
+    } else {
+        nextBtn.textContent = "Lanjut";
+    }
+}
+
+// PREV
 prevBtn.onclick = () => {
-    if (idx > 0) idx--;
-    render();
+    if (idx > 0) {
+        idx--;
+        render();
+    }
 };
 
+// NEXT / SUBMIT
 nextBtn.onclick = () => {
-    if (answers[idx] === null) {
-        alert("Pilih jawaban dulu ya");
+    if (answers[idx] === null) return;
+
+    // 🔴 JIKA SOAL TERAKHIR → FINISH
+    if (idx === questions.length - 1) {
+        finishQuiz();
         return;
     }
+
     idx++;
     render();
 };
 
-submitBtn.onclick = () => {
-    fetch("submit_quiz.php", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            answers: answers,
-            questions: questions,
-            categoryId: categoryId
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        resultWrap.innerHTML = `
-            <div class="result">
-                <strong>Hasil: ${data.score} / ${questions.length}</strong>
-            </div>
-        `;
-    });
-};
+function finishQuiz() {
+    let score = 0;
 
+    questions.forEach((q, i) => {
+        if (answers[i] === q.correct) score++;
+    });
+
+    // sembunyikan quiz
+    document.querySelector(".container").style.display = "none";
+
+    // tampilkan finish
+    finalScore.innerHTML = `
+        Nilai kamu: <strong>${score} / ${questions.length}</strong>
+    `;
+    finishScreen.style.display = "block";
+}
+
+// INIT
 render();
