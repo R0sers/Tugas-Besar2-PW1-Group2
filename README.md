@@ -1,6 +1,8 @@
 # Tugas-Besar2-PW1-Group2
 
-# 🧠 Base Core
+<!-- # 🧠 Base Core -->
+![Preview App](assets/img/BASE%20CORE.png)
+
 **Start from the base.  
 Master the core.**
 
