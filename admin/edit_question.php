@@ -19,17 +19,40 @@ if ($_SERVER['REQUEST_METHOD']=="POST") {
 }
 ?>
 
-<form method="post">
-    <textarea name="question"><?= $q['question'] ?></textarea><br>
-    <input name="a" value="<?= $q['option_a'] ?>"><br>
-    <input name="b" value="<?= $q['option_b'] ?>"><br>
-    <input name="c" value="<?= $q['option_c'] ?>"><br>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Soal</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body>
+<div class="admin-container">
+    <h2>Edit Soal</h2>
 
-    <select name="correct">
-        <option <?= $q['correct']=="A"?"selected":"" ?>>A</option>
-        <option <?= $q['correct']=="B"?"selected":"" ?>>B</option>
-        <option <?= $q['correct']=="C"?"selected":"" ?>>C</option>
-    </select>
+    <form method="post" class="admin-form">
+        <label>Soal</label>
+        <textarea name="question" placeholder="Tulis soal..." required></textarea>
 
-    <button>Update</button>
-</form>
+        <label>Opsi A</label>
+        <input name="a" placeholder="Jawaban A" required>
+
+        <label>Opsi B</label>
+        <input name="b" placeholder="Jawaban B" required>
+
+        <label>Opsi C</label>
+        <input name="c" placeholder="Jawaban C" required>
+
+        <label>Jawaban Benar</label>
+        <select name="correct">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+        </select>
+
+        <button type="submit" class="btn-primary">Simpan Soal</button>
+    </form>
+</div>
+
+    
+</body>

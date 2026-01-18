@@ -1,57 +1,270 @@
-body {
-    font-family: Poppins, sans-serif;
-    background: #f4f7fc;
+/* ================= RESET ================= */
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    font-family: "Poppins", system-ui, sans-serif;
 }
 
-.admin-topbar {
-    background: #1e293b;
+/* ================= ROOT ================= */
+:root {
+    --bg-dark: #020617;
+    --glass: rgba(255,255,255,0.08);
+    --glass-border: rgba(255,255,255,0.15);
+
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+
+    --danger: #ef4444;
+    --danger-light: #ff7a7a;
+
+    --text: #e5e7eb;
+    --muted: #9ca3af;
+
+    --radius-lg: 18px;
+    --radius-md: 14px;
+    --radius-pill: 999px;
+
+    --shadow-soft: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+/* ================= BODY ================= */
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, #1e293b, transparent 45%),
+        radial-gradient(circle at 80% 30%, #020617, transparent 40%),
+        linear-gradient(180deg, #020617, #020617);
+    color: var(--text);
+    padding: 40px 24px;
+}
+
+/* ================= TITLE ================= */
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ================= FILTER ================= */
+form {
+    margin-bottom: 20px;
+}
+
+select {
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+}
+
+select option {
+    color: #020617;
+}
+
+/* ================= ADD BUTTON ================= */
+a[href*="add_question"] {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
     color: white;
-    padding: 16px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.back {
-    color: #93c5fd;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(79,70,229,0.4);
+    transition: 0.25s;
 }
 
-.admin-container {
-    width: 90%;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+a[href*="add_question"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(79,70,229,0.55);
 }
 
-.admin-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.add-btn {
-    background: #2563eb;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-}
-
+/* ================= TABLE ================= */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 12px;
 }
 
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
+/* header */
 th {
-    background: #f1f5f9;
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    padding: 10px;
+}
+
+/* rows */
+tr {
+    background: var(--glass);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-soft);
+}
+
+td {
+    padding: 16px;
+    vertical-align: top;
+}
+
+/* rounded row */
+tr td:first-child {
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    font-weight: 600;
+}
+
+tr td:last-child {
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+/* ================= ACTION LINKS ================= */
+td a {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    transition: 0.25s;
+}
+
+/* edit */
+td a[href*="edit"] {
+    color: white;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    margin-right: 6px;
+}
+
+/* delete */
+td a[href*="delete"] {
+    color: white;
+    background: linear-gradient(135deg, var(--danger), var(--danger-light));
+}
+
+/* hover */
+td a:hover {
+    transform: translateY(-2px) scale(1.05);
+    opacity: 0.9;
+}
+
+/* ================= EMPTY STATE ================= */
+table:empty::after {
+    content: "Belum ada soal di kategori ini";
+    display: block;
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    body {
+        padding: 24px 14px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    td {
+        padding: 12px;
+    }
+}
+
+/* ================= ADD QUESTION FORM ================= */
+
+.admin-container {
+    max-width: 720px;
+    margin: auto;
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-soft);
+}
+
+.admin-container h2 {
+    margin-bottom: 24px;
+    font-size: 26px;
+}
+
+/* form layout */
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.admin-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+/* input & textarea */
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    color: var(--text);
+    font-size: 14px;
+    outline: none;
+    transition: .25s;
+}
+
+.admin-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.admin-form input::placeholder,
+.admin-form textarea::placeholder {
+    color: var(--muted);
+}
+
+/* focus */
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.25);
+}
+
+/* select option */
+.admin-form select option {
+    color: #020617;
+}
+
+/* submit button */
+.btn-primary {
+    margin-top: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: none;
+    color: white;
+    padding: 14px;
+    border-radius: var(--radius-pill);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+    box-shadow: 0 10px 30px rgba(79,70,229,0.45);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(79,70,229,0.6);
 }

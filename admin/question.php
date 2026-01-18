@@ -18,7 +18,7 @@ $questions = mysqli_query($conn, "
 <html>
 <head>
     <title>Kelola Soal</title>
-    <link rel="stylesheet" href="../assets/CSS/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
 
 <body>

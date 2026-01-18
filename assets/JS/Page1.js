@@ -1,23 +1,16 @@
-document.getElementById("math").addEventListener("click", () => {
-    window.location.href = "../HTML/Math.html";
-});
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ Page1.js loaded");
 
-document.getElementById("Logic").addEventListener("click", () => {
-    window.location.href = "../HTML/Logic.html";
-});
+    const buttons = document.querySelectorAll(".btn-mapel");
 
-document.getElementById("Sains").addEventListener("click", () => {
-    window.location.href = "../HTML/Sains.html";
-});
+    console.log("Jumlah tombol:", buttons.length);
 
-document.getElementById("Indo").addEventListener("click", () => {
-    window.location.href = "../HTML/Indo.html";
-});
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const cat = btn.dataset.cat;
+            console.log("Klik mapel:", cat);
 
-document.getElementById("Eng").addEventListener("click", () => {
-    window.location.href = "../HTML/English.html";
-});
-
-document.getElementById("Psy").addEventListener("click", () => {
-    window.location.href = "../HTML/Psikologi.html";
+            window.location.href = `quiz.php?cat=${cat}`;
+        });
+    });
 });

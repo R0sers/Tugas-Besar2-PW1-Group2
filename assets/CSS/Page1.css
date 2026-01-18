@@ -1,162 +1,230 @@
-body {
+/* ================== RESET ================== */
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: #f4f7fc;
-    color: #222;
+    padding: 0;
 }
 
+/* ================== ROOT ================== */
+:root {
+    --radius-xl: 22px;
+    --radius-lg: 18px;
+    --radius-pill: 999px;
+
+    --shadow-soft: 0 18px 45px rgba(0,0,0,0.35);
+    --shadow-glow: 0 0 30px rgba(255,255,255,0.06);
+
+    --glass: rgba(255,255,255,0.12);
+    --border-glass: rgba(255,255,255,0.18);
+
+    --bg-dark: #0b1220;
+    --bg-soft: #111827;
+
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+}
+
+/* ================== BODY ================== */
+body {
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 15% 20%, #1f2937, transparent 45%),
+        radial-gradient(circle at 85% 25%, #020617, transparent 40%),
+        linear-gradient(180deg, var(--bg-soft), var(--bg-dark));
+    color: var(--text-main);
+}
+
+/* ================== TOPBAR ================== */
 .topbar {
-    height: 60px;
-    background: #222;
-    color: white;
+    height: 70px;
+    padding: 0 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 25px;
+    background: rgba(2,6,23,0.65);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-glass);
 }
 
 .logo {
     font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.logout {
-    position: relative;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #fff3f3, #aaaaaa);
-    color: rgb(0, 0, 0);
-    text-decoration: none;
+    letter-spacing: 3px;
     font-size: 14px;
-    font-weight: 600;
-    box-shadow: 0 6px 18px rgba(255, 255, 255, 0.35);
-    transition: all 0.25s ease;
 }
 
-
-.logout:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255,75,75,0.45);
-    background: linear-gradient(135deg, #ff2f2f, #ff5f5f);
-}
-
-
-.logout:active {
-    transform: scale(0.96);
-}
-
+/* ================== ACTIONS ================== */
 .topbar-actions {
     display: flex;
-    align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
-/* tombol admin */
+.logout,
 .admin-panel {
-    position: relative;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #6366f1, #818cf8);
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
+    padding: 10px 22px;
+    border-radius: var(--radius-pill);
+    font-size: 13px;
     font-weight: 600;
-    box-shadow: 0 6px 18px rgba(99,102,241,0.35);
-    transition: all 0.25s ease;
+    text-decoration: none;
+    border: 1px solid var(--border-glass);
+    background: var(--glass);
+    color: var(--text-main);
+    transition: .3s;
 }
 
-/* hover */
+.logout:hover {
+    background: linear-gradient(135deg, #7a0505, #ff4b4b);
+    transform: translateY(-3px);
+}
+
 .admin-panel:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(99,102,241,0.45);
-    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    background: linear-gradient(135deg, #4f46e5, #818cf8);
+    transform: translateY(-3px);
 }
 
-/* klik */
-.admin-panel:active {
-    transform: scale(0.96);
-}
-
-
+/* ================== PROFILE ================== */
 .profile-box {
-    background: white;
-    margin: 20px auto;
-    width: 90%;
-    border-radius: 15px;
-    padding: 20px;
+    margin: 28px auto;
+    width: 92%;
+    padding: 26px;
+    border-radius: var(--radius-xl);
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border-glass);
     display: flex;
-    gap: 20px;
     align-items: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    gap: 22px;
+    box-shadow: var(--shadow-soft);
 }
 
 .pfp {
-    background: #000;
-    color: white;
-    width: 60px;
-    height: 60px;
+    width: 68px;
+    height: 68px;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #020617, #1f2937);
+    display: grid;
+    place-items: center;
     font-size: 26px;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .badge {
-    background: #2ecc71;
-    color: white;
-    padding: 3px 7px;
-    border-radius: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
     font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
 }
 
-.info-box {
-    width: 90%;
-    margin: auto;
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+.badge-admin {
+    background: linear-gradient(135deg, #ff4b4b, #ff7a7a);
+    color: white;
 }
+
+.badge-user {
+    background: linear-gradient(135deg, #4d8bff, #8ab6ff);
+    color: white;
+}
+
+/* ================== INFO ================== */
+.info-box {
+    width: 92%;
+    margin: auto;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+
+    background: rgba(2, 6, 23, 0.75); /* hitam dominan */
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+
+    color: var(--text-main);
+    box-shadow: var(--shadow-soft);
+}
+
 
 .info-box h3 {
-    margin: 0 0 8px;
+    margin-bottom: 8px;
 }
 
-
+/* ================== CORE ================== */
 .core-section {
-    width: 90%;
-    margin: 25px auto;
+    width: 92%;
+    margin: 36px auto;
 }
 
+/* ================== CARD ================== */
 .card {
+    position: relative;
+    padding: 26px;
+    margin: 18px 0;
+    border-radius: var(--radius-xl);
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 18px;
-    margin: 12px 0;
-    border-radius: 15px;
-    color: white;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    align-items: center;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: .35s;
 }
 
-.red    { background: linear-gradient(90deg, #6d0505, #ff4b4b); }
-.yellow { background: linear-gradient(90deg, #a86e00, #ffcc47); }
-.purple { background: linear-gradient(90deg, #5600a8, #d47aff); }
-.green  { background: linear-gradient(90deg, #036d32, #4cff8f); }
-.blue   { background: linear-gradient(90deg, #05426d, #47a4ff); }
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(255,255,255,0.25), transparent 60%);
+    opacity: 0;
+    transition: .35s;
+    pointer-events: none; /* 🔥 FIX KLIK */
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* ================== WARNA MAPEL ================== */
+.red {
+    background: linear-gradient(135deg, #7a0505, #ff4b4b);
+}
+
+.yellow {
+    background: linear-gradient(135deg, #b87900, #ffd24d);
+    color: #020617;
+}
+
+.purple {
+    background: linear-gradient(135deg, #5b00b3, #d47aff);
+}
+
+.green {
+    background: linear-gradient(135deg, #047857, #4cff8f);
+    color: #020617;
+}
+
+.blue {
+    background: linear-gradient(135deg, #075985, #47a4ff);
+}
+
+/* ================== BUTTON ================== */
+.card button {
+    position: relative;
+    z-index: 2;
+}
 
 button {
-    padding: 8px 18px;
+    padding: 10px 26px;
+    border-radius: var(--radius-pill);
     border: none;
-    border-radius: 20px;
-    background: white;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: bold;
-    color: #333;
+    background: rgba(255,255,255,0.95);
+    color: #020617;
+    transition: .25s;
 }
 
 button:hover {
-    background: #f0f0f0;
+    background: white;
+    transform: scale(1.08);
 }

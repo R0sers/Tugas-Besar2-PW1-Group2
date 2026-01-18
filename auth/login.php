@@ -28,15 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
-  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/CSS/auth.css">
 </head>
 
 <body>
 
   <div class="auth-box">
     <h2>Login</h2>
-    <img src="../assets/img/basecore1.png" alt="">
-    <p>Masuk ke Base Core</p>
+    <img src="../assets/img/BASE%20CORE.png" alt="basecore" class="auth-logo">
 
     <form action="#" method="post">
       <div class="form-group">
@@ -52,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 </div>
 
-<script src="../assets/js/auth.js"></script>
 
 
       <button type="submit">Login</button>

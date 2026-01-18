@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+
 * {
     box-sizing: border-box;
     font-family: 'Inter', 'Poppins', system-ui, sans-serif;
@@ -13,7 +13,6 @@ body {
     color: #fff;
 }
 
-/* ===== FORM CARD ===== */
 form {
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(14px);
@@ -26,7 +25,7 @@ form {
     animation: fadeUp 0.6s ease;
 }
 
-/* ===== INPUTS ===== */
+
 textarea,
 input,
 select {
@@ -52,7 +51,7 @@ input::placeholder {
     color: rgba(255,255,255,0.6);
 }
 
-/* ===== FOCUS EFFECT ===== */
+
 textarea:focus,
 input:focus,
 select:focus {
@@ -61,13 +60,13 @@ select:focus {
     background: rgba(255,255,255,0.18);
 }
 
-/* ===== SELECT ===== */
+
 select option {
     background: #1f2933;
     color: #fff;
 }
 
-/* ===== BUTTON ===== */
+
 button {
     width: 100%;
     padding: 14px;
@@ -84,14 +83,30 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(99,102,241,0.45);
+    box-shadow: 0 12px 30px rgba(163, 164, 230, 0.45);
 }
 
 button:active {
     transform: scale(0.97);
 }
 
-/* ===== ANIMATION ===== */
+a {
+    color: #4d8bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    color: #8ab6ff;
+    text-decoration: underline;
+}
+
+
+a:visited {
+    color: #4d8bff;
+}
+
+
 @keyframes fadeUp {
     from {
         opacity: 0;
@@ -103,14 +118,4 @@ button:active {
     }
 }
 
-.auth-box img,
-.auth-image {
-    width: 100%;
-    max-width: 280px;      /* ukuran ideal untuk login */
-    aspect-ratio: 16 / 9;  /* JAGA RASIO */
-    object-fit: cover;     /* POTONG RAPI */
-    border-radius: 14px;
-    margin: 12px auto;
-    display: block;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-}
+

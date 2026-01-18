@@ -28,12 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Register</title>
-  <link rel="stylesheet" href="../assets/css/auth.css">
+  <link rel="stylesheet" href="../assets/CSS/auth.css">
 </head>
 <body>
 
   <div class="auth-box">
-    <h2>Register</h2>
+    <h2>Registrasi</h2>
     <p>Buat akun baru</p>
 
     <form action="#" method="post">
@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </div>
 </div>
 
-<script src="../assets/js/auth.js"></script>
 
 
       <button type="submit">Daftar</button>
