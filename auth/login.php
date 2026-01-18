@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   <div class="auth-box">
     <h2>Login</h2>
+    <img src="../assets/img/basecore1.png" alt="">
     <p>Masuk ke Base Core</p>
 
     <form action="#" method="post">

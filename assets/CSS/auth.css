@@ -102,3 +102,15 @@ button:active {
         transform: translateY(0);
     }
 }
+
+.auth-box img,
+.auth-image {
+    width: 100%;
+    max-width: 280px;      /* ukuran ideal untuk login */
+    aspect-ratio: 16 / 9;  /* JAGA RASIO */
+    object-fit: cover;     /* POTONG RAPI */
+    border-radius: 14px;
+    margin: 12px auto;
+    display: block;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
